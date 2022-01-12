@@ -64,7 +64,7 @@ for count in range(10000):
                 if header in message:
                     print(header + ':' , message[header])
             """#
-            #与用户交互是否想查看邮件内容
+            #查看邮件内容
             response, lines, octets = p.retr(number) #检索message并返回
             for i in range(0, len(lines)):
                 lines[i] = bytes.decode(lines[i])
@@ -81,7 +81,7 @@ for count in range(10000):
                 mail_content = mail_content.decode('utf8')
             except UnicodeDecodeError:
                 mail_content = mail_content.decode('gbk')
-            
+            #匹配验证码，并粘贴
             mat = re.search('[^(\d|#)](\d{6}?)([^\d]|$)', mail_content)
             if mat != None:
                 code = mat.group(1)
